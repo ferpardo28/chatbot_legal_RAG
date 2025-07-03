@@ -1,24 +1,22 @@
-# Chatbot Legal con LangChain y RAG
 
-Este proyecto implementa un chatbot legal utilizando modelos de lenguaje (LLM) con la arquitectura RAG (Retrieval-Augmented Generation) usando LangChain, FAISS y Gradio.
+# Legal Chatbot with LangChain and RAG
 
-## Objetivo
+This project implements a legal chatbot that answers questions about the **Federal Labor Law (LFT)** of Mexico. It uses the **RAG (Retrieval-Augmented Generation)** technique to retrieve relevant fragments from the official document and generate answers using OpenAI language models.
 
-Proveer respuestas a preguntas frecuentes relacionadas con la Ley Federal del Trabajo en México, consultando directamente el texto oficial en PDF.
+## 🚀 Technologies used
 
-## Tecnologías usadas
+- `LangChain`
+- `FAISS` for vector storage
+- `OpenAI` (embeddings y modelo generativo)
+- `Gradio` for the interface
+- `pdfplumber` for processing the legal PDF
 
-- Python
-- LangChain
-- OpenAI
-- FAISS (vector store)
-- pdfplumber
-- Gradio (interfaz)
-- Google Colab
+## 📄 Data source
 
-## Instalación de dependencias
+The chatbot is based on the official file of the Federal Labor Law available at:
+https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf
 
-Ejecuta estas celdas al inicio del notebook para instalar las dependencias necesarias:
+## ⚙️ Installation (if running in Colab)
 
 ```python
 !pip install langchain langchain-community langchain-openai faiss-cpu pdfplumber > /dev/null 2>&1
@@ -27,29 +25,14 @@ Ejecuta estas celdas al inicio del notebook para instalar las dependencias neces
 !wget --no-check-certificate -O LFT.pdf https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf > /dev/null 2>&1
 ```
 
-## Funcionamiento
+## 💬 Overview
 
-1. El PDF de la Ley es dividido en fragmentos (chunks).
-2. Se generan embeddings de esos fragmentos usando OpenAI.
-3. Se crea una base vectorial FAISS para recuperar los fragmentos más relevantes.
-4. Gradio permite interactuar con el chatbot usando un input en lenguaje natural.
+The system splits the PDF into chunks, generates embeddings with OpenAI, and stores the vectors using FAISS. Then, using LangChain and the RAG technique, it generates responses based on the most relevant fragments.
 
-## Instrucciones
+## ✅ Testing
 
-1. Sube tu API key como variable de entorno en Google Colab:
-   ```python
-   import os
-   os.environ["OPENAI_API_KEY"] = "tu_clave_aquí"
-   ```
-2. Corre el notebook por bloques.
-3. Interactúa con el chatbot desde el link generado por Gradio (`.gradio.live`).
+The system was tested with various questions related to labor rights in Mexico.
 
-## Ejemplo de uso
+## 👨‍💻 Author
 
-- *"¿Qué prestaciones me da la ley si soy empleado formal?"*
-- *"¿En qué casos me pueden despedir sin responsabilidad para el patrón?"*
-
-## Notas
-
-- El modelo no garantiza precisión legal. Solo resume el contenido oficial de la ley.
-- Proyecto académico con fines demostrativos de NLP + RAG.
+This project was developed as part of a master's degree assignment in NLP.
